@@ -130,7 +130,7 @@ STATIC_ROOT = BASE_DIR /'static'
 STATICFILES_DIRS = [
    "kitkart/static",
 ]
-
+STATICSTORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ##Media files
 MEDIA_URL = '/media/'
