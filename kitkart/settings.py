@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-#t%*=b7joz+atqmv()*yu4hv(*ly8fgs#1zpq6p^@)*@&22=z4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['kitkarrt.onrender.com']
+ALLOWED_HOSTS = ['kitkarrt.onrender.com','127.0.0.1']
 
 # Application definition
 
@@ -59,7 +59,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'kitkart.urls'
-
+    
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -85,10 +85,20 @@ AUTH_USER_MODEL = 'account.Account'  #custom user model
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'myshop',          # tshe name you created in pgAdmin
+        'USER': 'postgres',        # your Postgres username
+        'PASSWORD': '2003',# the password you set during installation
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
