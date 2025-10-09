@@ -14,6 +14,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +29,7 @@ SECRET_KEY = 'django-insecure-#t%*=b7joz+atqmv()*yu4hv(*ly8fgs#1zpq6p^@)*@&22=z4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['kitkarrt.onrender.com','127.0.0.1']
+ALLOWED_HOSTS = ['kitkarrt.onrender.com']
 
 # Application definition
 
@@ -91,17 +92,23 @@ AUTH_USER_MODEL = 'account.Account'  #custom user model
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'myshop',          # tshe name you created in pgAdmin
+#         'USER': 'postgres',        # your Postgres username
+#         'PASSWORD': '2003',# the password you set during installation
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'myshop',          # tshe name you created in pgAdmin
-        'USER': 'postgres',        # your Postgres username
-        'PASSWORD': '2003',# the password you set during installation
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL'),
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
